@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('username');
             $table->string('diary');
             $table->date('date_created');
-            $table->smallInt
+            $table->smallInteger('mood_rate');
+            $table->binary('photo');
             $table->timestamps();
             
         });
