@@ -19,7 +19,6 @@ return new class extends Migration
             $table->smallInteger('mood_rate');
             $table->binary('photo');
             $table->timestamps();
-            
         });
     }
 
