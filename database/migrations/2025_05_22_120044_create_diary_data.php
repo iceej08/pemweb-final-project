@@ -20,8 +20,7 @@ return new class extends Migration
             $table->binary('photo')->nullable();
             $table->timestamps();
 
-            $table->foreign('username')->references('username')->on('user')->onDelete('cascade');
-            
+            $table->foreign('username')->references('username')->on('user_moodiary')->onDelete('cascade');
         });
     }
 
