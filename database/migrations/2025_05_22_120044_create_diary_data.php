@@ -19,6 +19,8 @@ return new class extends Migration
             $table->enum('mood', ['awful', 'bad', 'so-so', 'good', 'terrific']);
             $table->binary('photo')->nullable();
             $table->timestamps();
+
+            $table->foreign('username')->references('username')->on('user')->onDelete('cascade');
             
         });
     }
