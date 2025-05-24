@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('diary')->nullable();
             $table->date('date_created')->default(DB::raw('CURRENT_DATE'));
-            $table->smallInteger('mood_rate');
+            $table->enum('mood', ['awful', 'bad', 'so-so', 'good', 'terrific']);
             $table->binary('photo')->nullable();
             $table->timestamps();
             
