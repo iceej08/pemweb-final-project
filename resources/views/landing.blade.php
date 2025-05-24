@@ -18,6 +18,7 @@
         <div><a class="nav-link" href="#contact">Contact</a></div>
     </div>
     <div class="navbar-nav ms-auto">
+        <a href="{{ route('login') }}">
         <a href="#login" class="p-2">
             <img src="{{ asset('images/guesticon.jpg') }}" style="width: 35px; height: 35px;">
         </a>
