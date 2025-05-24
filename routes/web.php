@@ -7,7 +7,7 @@ use App\Http\Controllers\AuthController;
 
 
 // // Redirect root ke login
-Route::get('/landing', fn() => view('landing'))->name('landing');
+Route::get('/', fn() => view('landing'))->name('landing');
 
 // Tampilkan halaman login
 Route::get('/login', fn() => view('masuk.login'))->name('login');

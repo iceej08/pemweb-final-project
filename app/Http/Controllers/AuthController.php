@@ -20,8 +20,8 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'username' => 'required|unique:user',
-            'email' => 'required|email|unique:user',
+            'username' => 'required|unique:user_moodiary',
+            'email' => 'required|email|unique:user_moodiary',
             'password' => 'required|confirmed',
         ]);
 
@@ -34,7 +34,7 @@ class AuthController extends Controller
         $user->save();
 
         // Simpan user ke session
-        Session::put('user', $user);
+        Session::put('user_moodiary', $user);
 
         return redirect('/home');
     }
@@ -61,7 +61,7 @@ class AuthController extends Controller
     // Logout
     public function logout()
     {
-        Session::forget('user');
+        Session::forget('user_moodiary');
         return redirect('/login');
     }
 }
