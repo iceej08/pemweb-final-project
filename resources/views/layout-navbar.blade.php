@@ -42,7 +42,7 @@
             background-color: #ff7b4f92;
         }
         .nav-item-custom.active {
-            font-weight: 00;
+            font-weight: 600;
             background-color: #ff7b4f92;
         }
         .nav-item-custom img {
