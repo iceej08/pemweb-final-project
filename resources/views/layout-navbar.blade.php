@@ -22,7 +22,6 @@
             border-bottom-right-radius: 25px;
             box-shadow: 4px 0 30px rgba(0, 0, 0, 1.5);
             width: 15%; /* 2.5 kolom dari 12 kolom */
-            /* position: fixed; */
         }
         .sidebar-content{
             margin: 40px, auto, auto, auto;
@@ -55,14 +54,12 @@
             background-color: #ff7b4f92;
             border-radius: 10px;
         }
-        
     </style>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
             @yield('navbar')
-
             <div class="col-9 px-5 py-4">
                 @yield('content')
             </div>
