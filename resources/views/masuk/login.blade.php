@@ -26,17 +26,15 @@
             padding: 0 120px;
             gap: 0px; 
         }
-
         .form-box {
             background: white;
             border-radius: 20px;
-            padding: 80px 40px;
-            width: 500px;
+            padding: 60px 30px;
+            width: 400px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
             text-align: center;
             margin-left: auto;
         }
-
         .form-box h2 {
             font-size: 32px;
             margin-bottom: 10px;
@@ -81,9 +79,9 @@
         }
 
         .image-container img {
-            max-width: 700px;
-            width: 650%;
-        }
+            max-width: 570px;
+            width: 500%;
+        }
     </style>
 </head>
 <body>
