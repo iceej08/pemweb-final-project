@@ -322,21 +322,6 @@
         }
         });
 
-
-        const moodImages = {
-        'Terrific': new Image(),
-        'Good': new Image(),
-        'So-so': new Image(),
-        'Bad': new Image(),
-        'Awful': new Image()
-        };
-
-        moodImages['Terrific'].src = '/public/mood/terrific.png';
-        moodImages['Good'].src = '/public/mood/good.png';
-        moodImages['So-so'].src = '/public/mood/so-so.png';
-        moodImages['Bad'].src = '/public/mood/bad.png';
-        moodImages['Awful'].src = '/public/mood/awful.png';
-
         const donutCtx = document.getElementById('donutChart').getContext('2d');
         const moodPercentages = @json($moodPercentages);
 
