@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CalenderController;
 
 use app\Http\Controllers\DiaryController;
 use Illuminate\Support\Facades\Session;
@@ -36,8 +37,11 @@ Route::get('/addDiary', function(){
     return view('add');
 });
 
+
+
+Route::get('/calender', [CalenderController::class, 'index'])->name('calender');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/addDiary', [DiaryController::class, 'create'])->name('diary.create');
     Route::post('/addDiary', [DiaryController::class, 'store'])->name('diary.store');
 });
-
