@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('diary_data', function (Blueprint $table) {
             $table->id();
             $table->string('username');
-            $table->string('diary');
+            $table->string('diary')->nullable();
             $table->date('date_created');
-            $table->smallInteger('mood_rate');
-            $table->binary('photo');
+            $table->enum('mood', ['awful', 'bad', 'so-so', 'good', 'terrific']);
+            $table->binary('photo')->nullable();
             $table->timestamps();
+
+            $table->foreign('username')->references('username')->on('user_moodiary')->onDelete('cascade');
         });
     }
 

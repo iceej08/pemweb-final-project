@@ -1,0 +1,75 @@
+@extends('layout-navbar')
+
+@section('title', 'Moodiary - Add Yours')
+
+@section('navbar')
+<div class="sidebar d-flex flex-column align-items-start px-3 py-4" style="min-height: 100vh;">
+    <div class="d-flex align-items-center mb-2 mt-4 me-3 fw-semibold" style="font-family: 'Alkatra', cursive; font-size:1.5rem;">
+        <img src="{{ asset('images/logomoo.png') }}" style="width: 70px; height: 70px; margin-right:10px;"> Moodiary </div>
+
+    <div class="sidebar-content mt-4">
+        <a href="/" class="nav-item-custom mb-4">
+        <img src="{{ asset('images/home navbar.png') }}" alt="Home">
+        <span>Home</span>
+        </a>
+        <a href="/" class="nav-item-custom mb-4">
+            <img src="{{ asset('images/chart navbar.png') }}" alt="Chart">
+            <span>Chart</span>
+        </a>
+        <a href="/" class="nav-item-custom mb-4">
+            <img src="{{ asset('images/calender navbar.png') }}" alt="Calendar">
+            <span>Calendar</span>
+        </a>
+        <a href="/" class="nav-item-custom mb-4">
+            <img src="{{ asset('images/recap navbar.png') }}" alt="Recap">
+            <span>Recap</span>
+        </a>
+        <a href="/addDiary" class="nav-item-custom active mb-4" aria-current="true">
+            <img src="{{ asset('images/add navbar.png') }}" alt="Add">
+            <span>Add</span>
+        </a>
+    </div>
+</div>
+@endsection
+
+@section('content')
+
+<div class="container ms-5 p-5 px-5" 
+style="background-color:#FFF0DC; border-radius: 2rem; box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.5);">
+    <h3 class="text-center fw-bold mb-4">How are you feeling today?</h3>
+
+    <!-- Mood Selector -->
+    <form method="POST" action="{{ route('diary.store') }}" enctype="multipart/form-data">
+        @csrf
+        <div class="d-flex justify-content-center gap-4 mb-4">
+            @foreach (['terrific', 'good', 'so-so', 'bad', 'awful'] as $mood)
+                <label>
+                    <input type="radio" name="mood" value="{{ $mood }}" hidden required>
+                    <img class="mood" src="{{ asset("images/moods/$mood.png") }}" alt="{{ $mood }}" width="100">
+                    <p class="mood text-center">{{ ucfirst($mood) }}</p>
+                </label>
+            @endforeach
+        </div>
+
+        <!-- Diary -->
+        <div class="mb-3">
+            <label for="diary" class="form-label fw-semibold">Today's Feeling</label>
+            <textarea name="diary" id="diary" rows="5" class="form-control" placeholder="Write your feeling here..."></textarea>
+        </div>
+
+        <!-- Upload Memory -->
+        <div class="mb-3">
+            <label for="photo" class="form-label fw-semibold">Upload your memory</label>
+            <input class="form-control" type="file" name="photo" accept="image/*">
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn px-4 fw-bold text-white" style="background: #AF4D07">Save</button>
+    </form>
+</div>
+
+    @if ($entry->image_blob)
+        <img src="data:image/jpeg;base64,{{ base64_encode($entry->image_blob) }}" class="img-fluid rounded" alt="Uploaded memory">
+    @endif
+
+@endsection
