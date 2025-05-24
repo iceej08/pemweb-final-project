@@ -26,12 +26,12 @@
         }
 
         .main-content img {
-            width: 370px;
+            width: 250px;
             margin-bottom: 0px;
         }
         .main-content h1 {
             font-family: 'Alkatra', cursive;
-            font-size: 100px;
+            font-size: 80px;
             margin-bottom: 10px;
         }
         .main-content p {

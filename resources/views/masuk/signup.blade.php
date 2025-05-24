@@ -13,24 +13,27 @@
         .container {
             display: flex;
             align-items: center;
-            justify-content: space-evenly;
-            padding: 10px;
+            justify-content: center;
+            height: 100vh;
+            padding: 40px 0;
+            box-sizing:border-box;
         }
         .form-box {
             background: white;
             border-radius: 15px;
-            padding: 50px 50px;
-            width: 25rem;
-            height: 38rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            /* ni cek lagi */
+            padding: 30px 40px;
+            width: 300px;
+            max-height: 500px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
             text-align: center;
         }
         .input-group {
             background: #f7f7f7;
             border: 1px solid #ccc;
             border-radius: 8px;
-            padding: 12px 16px;
-            margin-bottom: 15px;
+            padding: 8px 10px;
+            margin-bottom: 14px;
             text-align: left;
         }
         .input-group input {
@@ -38,16 +41,18 @@
             background: transparent;
             outline: none;
             width: 100%;
-            font-size: 16px;
+            font-size: 14px;
             font-family: 'Poppins', sans-serif;
         }
-        .form-box h2 {
-            margin-bottom: -1rem;
-            font-size: 2rem;
+        .form-box h2 { 
+            /* ni cek lagi ganti jadi rem */
+            margin-bottom: 5px;
+            font-size: 27px;
         }
         .form-box p {
-            margin-bottom: 50px;
-            font-size: 1.5rem;
+            /* ni juga */
+            margin-bottom: 20px;
+            font-size: 20px;
             color: #555;
         }
         button {
@@ -75,7 +80,7 @@
 </head>
 <body>
 <div class="container">
-    <div><img src="{{ asset('images/cow_signup.png') }}" alt="cow" width="750"></div>
+    <div><img src="{{ asset('images/cow_signup.png') }}" alt="cow" width="550"></div>
 
     <form action="/signup" method="POST" class="form-box">
         @csrf
