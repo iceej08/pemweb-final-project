@@ -1,5 +1,37 @@
 @extends('layout-navbar')
 
+@section('title', 'Moodiary - Calendar')
+
+@section('navbar')
+<div class="sidebar fixed-top d-flex flex-column align-items-start px-3 py-4" style="min-height: 100vh;">
+    <div class="d-flex align-items-center mb-2 mt-4 me-3 fw-semibold" style="font-family: 'Alkatra', cursive; font-size:1.5rem;">
+        <img src="{{ asset('images/logomoo.png') }}" style="width: 70px; height: 70px; margin-right:10px;"> Moodiary </div>
+
+    <div class="sidebar-content mt-4">
+        <a href="/home" class="nav-item-custom mb-4">
+        <img src="{{ asset('images/navbar/home.png') }}" alt="Home">
+        <span>Home</span>
+        </a>
+        <a href="/chart" class="nav-item-custom mb-4">
+            <img src="{{ asset('images/navbar/chart.png') }}" alt="Chart">
+            <span>Chart</span>
+        </a>
+        <a href="/calender" class="nav-item-custom active mb-4">
+            <img src="{{ asset('images/navbar/calender.png') }}" alt="Calendar">
+            <span>Calendar</span>
+        </a>
+        <a href="/recap" class="nav-item-custom mb-4">
+            <img src="{{ asset('images/navbar/recap.png') }}" alt="Recap">
+            <span>Recap</span>
+        </a>
+        <a href="/addDiary" class="nav-item-custom mb-4" aria-current="true">
+            <img src="{{ asset('images/navbar/add.png') }}" alt="Add">
+            <span>Add</span>
+        </a>
+    </div>
+</div>
+@endsection
+
 @section('content')
 
     @php
@@ -129,7 +161,7 @@
         }
     </style>
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-5" style="min-height: 79vh">
         <div class="row">
 
             <div class="col-12">
@@ -151,7 +183,7 @@
                         @for ($i = 1; $i <= $daysInMonth; $i++)
                             <div class="day-cell">
                                 @if (isset($moods[$i]))
-                                    <img src="{{ asset('images/mood/' . $moodIcons[$moods[$i]->mood_rate]) }}" class="mood-icon" alt="mood" />
+                                    <img src="{{ asset('images/moods/' . $moodIcons[$moods[$i]->mood_rate]) }}" class="mood-icon" alt="mood" />
                                 @else
                                     <div>{{ $i }}</div>
                                 @endif

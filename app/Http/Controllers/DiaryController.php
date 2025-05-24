@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use app\Models\Diary;
+use App\Models\Diary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +12,7 @@ class DiaryController extends Controller
 {
     public function create()
     {
-        return view('diary.create');
+        return view('add');
     }
 
     public function store(Request $request)
@@ -29,14 +29,37 @@ class DiaryController extends Controller
             $binaryData = file_get_contents($request->file('photo')->getRealPath());
         }
 
+        $moodMap = [
+            'awful' => 1,
+            'bad' => 2,
+            'so-so' => 3,
+            'good' => 4,
+            'terrific' => 5,
+        ];
+
+        $moodText = $request->mood;
+        $moodScore = $moodMap[$moodText];
+
         Diary::create([
-            'user_id' => Auth::id(),
-            'mood' => $request->mood,
+            'username' => Auth::user()->username,
+            'mood' => $moodText,
+            'mood_rate' => $moodScore,
             'diary' => $request->diary,
             'photo' => $binaryData,
-            'entry_date' => now()->toDateString(),
+            'date_created' => now()->toDateString()
         ]);
 
         return redirect()->route('diary.create')->with('success', 'Diary saved!');
+    }
+
+    public function recap()
+    {
+        $username = Auth::user()->username;
+
+        $diaries = Diary::where('username', $username)
+                        ->orderBy('date_created', 'desc')
+                        ->get();
+
+        return view('recap', compact('diaries'));
     }
 }

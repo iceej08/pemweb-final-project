@@ -80,8 +80,8 @@
 
         .image-container img {
             max-width: 570px;
-            width: 500%;
-        }
+            width: 500%;
+        }
     </style>
 </head>
 <body>
@@ -90,11 +90,11 @@
     <div class="form-box">
         <h2>Log In</h2>
         <p>Welcome to Moodiary</p>
-        <form action="/login" method="POST">
+        <form action="{{ route('login') }}" method="POST">
             @csrf
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Sign In</button>
+            <button type="submit">Log In</button>
         </form>
         <div class="link">No Account? <a href="/signup">Sign Up</a></div>
     </div>
