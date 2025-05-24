@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,6 +6,7 @@
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/logomoo.png">
 </head>
 <style>
         body{
@@ -38,26 +38,29 @@
             font-size: 20px;
         }
         .nav-item-custom:hover {
-            font-weight: 600;
-            background-color: #f8b69833;
+            font-weight: 500;
+            background-color: #ff7b4f92;
         }
-        .nav-item-active {
-            background-color: #FF7B4F;
-            font-weight: 700;
-            box-shadow: 3px 0 1px rgba(0, 0, 0, 1.5);
+        .nav-item-custom.active {
+            font-weight: 00;
+            background-color: #ff7b4f92;
         }
         .nav-item-custom img {
-            width: 50px;
-            height: 50px;
+            width: 2rem;
+            height: 2rem;
+        }
+        input[type=radio]:checked + img{
+            font-weight: 600;
+            background-color: #ff7b4f92;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
-            @include('navbar')
-
-            <div class="col-md-9 py-4 px-5">
+            @yield('navbar')
+            <div class="col-9 px-5 py-4">
                 @yield('content')
             </div>
         </div>
