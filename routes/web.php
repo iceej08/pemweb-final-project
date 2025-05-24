@@ -30,5 +30,7 @@ Route::get('/home', function () {
     return view('home');
 });
 
-
+Route::get('/landing', function(){
+    return view('landing');
+});
 
