@@ -56,3 +56,5 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/recap-detail/{id}', function ($id) {
     return view('recap-detail', ['id' => $id]);
 });
+
+Route::get('/chart', [ChartController::class, 'index'])->name('chart');

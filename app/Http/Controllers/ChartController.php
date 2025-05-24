@@ -62,3 +62,4 @@ class ChartController extends Controller
         return view('home');
     }
 }
+
