@@ -2,7 +2,7 @@
 
 @section('title', 'Moodiary')
 
-@section('contents')
+@section('content')
 <nav class="navbar navbar-expand-md mx-2" style="background-color: #F0BB78">
 <div class="container-fluid">
     <a class="navbar-brand" href="#" style="font-family:'Alkatra', cursive;">
@@ -13,11 +13,12 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="navbar-nav ms-auto me-5 gap-5">
-        <div><a class="nav-link active" href="#home">Home</a></div>
-        <div><a class="nav-link" href="#about">About Us</a></div>
-        <div><a class="nav-link" href="#contact">Contact</a></div>
+        <div><a class="nav-link active fw-bold" href="#landing">Home</a></div>
+        <div><a class="nav-link fw-semibold" href="#about">About Us</a></div>
+        <div><a class="nav-link fw-semibold" href="#contact">Contact</a></div>
     </div>
     <div class="navbar-nav ms-auto">
+
         <a href="{{ route('login') }}">
         <a href="/login" class="p-2">
             <img src="{{ asset('images/guesticon.jpg') }}" style="width: 35px; height: 35px;">
@@ -27,7 +28,7 @@
 </div>
 </nav>
 
-<section id="home">
+<section id="landing">
 <div class="container">
     <div class="row align-items-center">
         <div class="col-md-6 text-left">
