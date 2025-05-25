@@ -22,11 +22,11 @@ class DiaryController extends Controller
             'diary' => 'nullable|string',
             'photo' => 'nullable|image|max:2048',
         ]);
-        
-        $binaryData = null;
 
         if ($request->hasFile('photo')) {
-            $binaryData = file_get_contents($request->file('photo')->getRealPath());
+            $photoPath = $request->file('photo')->store('uploads', 'public'); // simpan di storage/app/public/uploads
+        } else {
+            $photoPath = null;
         }
 
         $moodMap = [
@@ -45,7 +45,7 @@ class DiaryController extends Controller
             'mood' => $moodText,
             'mood_rate' => $moodScore,
             'diary' => $request->diary,
-            'photo' => $binaryData,
+            'photo' => $photoPath,
             'date_created' => now()->toDateString()
         ]);
 

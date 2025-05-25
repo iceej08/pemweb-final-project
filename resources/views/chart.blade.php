@@ -4,10 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Chart</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    
+    <link rel="icon" type="image/x-icon" href="/images/logomoo.png">  
     <style>
         * {
             margin: 0;
@@ -148,7 +146,7 @@
         }
 
         .btn-add:hover {
-            background:rgb(167, 84, 26);
+            background-color: #AF4D07;
             box-shadow: 0 4px 12px rgba(210, 105, 30, 0.3);
         }
 
@@ -191,6 +189,8 @@
 </html>
 @extends('layout-navbar')
 
+@section('title', 'Moodiary - Chart')
+
 @section('navbar')
 <div class="sidebar fixed-top d-flex flex-column align-items-start px-3 py-4" style="min-height: 100vh;">
     <div class="d-flex align-items-center mb-2 mt-4 me-3 fw-semibold" style="font-family: 'Alkatra', cursive; font-size:1.5rem;">
@@ -198,25 +198,33 @@
 
     <div class="sidebar-content mt-4">
         <a href="/home" class="nav-item-custom mb-4">
-        <img src="{{ asset('images/home navbar.png') }}" alt="Home">
+        <img src="{{ asset('images/navbar/home.png') }}" alt="Home">
         <span>Home</span>
         </a>
         <a href="/chart" class="nav-item-custom active mb-4">
-            <img src="{{ asset('images/chart navbar.png') }}" alt="Chart">
+            <img src="{{ asset('images/navbar/chart.png') }}" alt="Chart">
             <span>Chart</span>
         </a>
         <a href="/calendar" class="nav-item-custom mb-4">
-            <img src="{{ asset('images/calender navbar.png') }}" alt="Calendar">
+            <img src="{{ asset('images/navbar/calender.png') }}" alt="Calendar">
             <span>Calendar</span>
         </a>
         <a href="/recap" class="nav-item-custom mb-4">
-            <img src="{{ asset('images/recap navbar.png') }}" alt="Recap">
+            <img src="{{ asset('images/navbar/recap.png') }}" alt="Recap">
             <span>Recap</span>
         </a>
         <a href="/addDiary" class="nav-item-custom mb-4">
-            <img src="{{ asset('images/add navbar.png') }}" alt="Add">
+            <img src="{{ asset('images/navbar/add.png') }}" alt="Add">
             <span>Add</span>
         </a>
+    </div>
+    <div class="logout-section mt-auto">
+        <form action="{{ route('logout') }}" method="get" class="w-100">
+            @csrf
+            <button type="submit" class="nav-item-custom mb-4 btn-logout">
+                <span>Logout</span>
+            </button>
+        </form>
     </div>
 </div>
 @endsection
@@ -268,8 +276,6 @@
         </div>
     </main>
 </div>
-
-
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {

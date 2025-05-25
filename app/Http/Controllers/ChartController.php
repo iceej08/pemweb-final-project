@@ -11,26 +11,41 @@ class ChartController extends Controller
     {
         $month = $request->get('month', now()->month);
         $year = $request->get('year', now()->year);
-        $username = $request->get('username');
-
-        $chartData = Diary::getChartData($username, $month, $year);
-        $moodDistribution = Diary::getMoodDistribution($username, $month, $year);
-
-        $totalStories = Diary::where('username', $username)
+        $username = session('user_moodiary');
+    
+        $entries = Diary::where('username', $username)
             ->whereMonth('date_created', $month)
             ->whereYear('date_created', $year)
-            ->whereNotNull('diary')
-            ->count();
-
+            ->orderBy('date_created')
+            ->get();
+    
+        $chartData = $entries->map(function ($entry) {
+            return [
+                'day' => $entry->date_created->day,
+                'mood_value' => $entry->mood_rate,
+                'mood' => $entry->mood
+            ];
+        });
+    
+        $moodDistribution = Diary::where('username', $username)
+            ->whereMonth('date_created', $month)
+            ->whereYear('date_created', $year)
+            ->selectRaw('mood, COUNT(*) as count')
+            ->groupBy('mood')
+            ->pluck('count', 'mood')
+            ->toArray();
+    
+        $totalStories = $entries->whereNotNull('diary')->count();
         $totalEntries = array_sum($moodDistribution);
         $moodPercentages = [];
+    
         if ($totalEntries > 0) {
-            foreach (['terrific','good','so-so', 'bad', 'awful', ] as $mood) {
+            foreach (['so-so', 'terrific', 'awful','good','bad'] as $mood){
                 $count = $moodDistribution[$mood] ?? 0;
                 $moodPercentages[$mood] = round(($count / $totalEntries) * 100);
             }
         }
-
+    
         return view('chart', compact(
             'chartData',
             'moodDistribution',
@@ -41,25 +56,4 @@ class ChartController extends Controller
             'username'
         ));
     }
-
-    public function calendar(Request $request)
-    {
-        return view('calendar');
-    }
-
-    public function recap(Request $request)
-    {
-        return view('recap');
-    }
-
-    public function addDiary()
-    {
-        return view('addDiary');
-    }
-
-    public function home(Diary $moodEntry)
-    {
-        return view('home');
-    }
 }
-

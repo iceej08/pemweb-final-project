@@ -6,6 +6,7 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DiaryController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RecapController;
 
 
 
@@ -25,7 +26,7 @@ Route::post('/signup', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 // Logout
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Halaman home (hanya bisa diakses jika sudah login)
 Route::get('/home', function () {
@@ -44,24 +45,14 @@ Route::get('/chart', function () {
     if (!Session::has('user_moodiary')) return redirect('/login');
     return view('chart');
 });
-Route::get('/calender', function () {
+Route::get('/calendar', function () {
     if (!Session::has('user_moodiary')) return redirect('/login');
-    return view('calender');
+    return view('calendar.index');
 });
 
 Route::get('/addDiary', [DiaryController::class, 'create'])->name('diary.create');
 Route::post('/addDiary', [DiaryController::class, 'store'])->name('diary.store');
 Route::get('/recap', [DiaryController::class, 'recap'])->name('diary.recap');
 Route::get('/chart', [ChartController::class, 'index'])->name('chart');
-Route::get('/calender', [CalenderController::class, 'index'])->name('calender');
-
-
-// Route::get('/recap', function () {
-//     return view(view: 'recap');
-// });
-
-Route::get('/recap-detail/{id}', function ($id) {
-    return view('recap-detail', ['id' => $id]);
-});
-
-Route::get('/chart', [ChartController::class, 'index'])->name('chart');
+Route::get('/calendar', [CalenderController::class, 'index'])->name('calendar');
+Route::get('/recap-detail/{id}', [RecapController::class, 'show'])->name('recap.show');

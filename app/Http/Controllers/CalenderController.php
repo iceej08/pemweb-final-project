@@ -31,6 +31,6 @@ class CalenderController extends Controller
                 return Carbon::parse($item->date_created)->day;
             });
 
-        return view('calender.index', compact('month', 'year', 'moods'));
+        return view('calendar.index', compact('month', 'year', 'moods'));
     }
 }

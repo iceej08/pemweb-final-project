@@ -16,7 +16,7 @@
             <img src="{{ asset('images/navbar/chart.png') }}" alt="Chart">
             <span>Chart</span>
         </a>
-        <a href="/calender" class="nav-item-custom active mb-4">
+        <a href="/calendar" class="nav-item-custom active mb-4">
             <img src="{{ asset('images/navbar/calender.png') }}" alt="Calendar">
             <span>Calendar</span>
         </a>
@@ -28,6 +28,14 @@
             <img src="{{ asset('images/navbar/add.png') }}" alt="Add">
             <span>Add</span>
         </a>
+    </div>
+    <div class="logout-section mt-auto">
+        <form action="{{ route('logout') }}" method="get" class="w-100">
+            @csrf
+            <button type="submit" class="nav-item-custom mb-4 btn-logout">
+                <span>Logout</span>
+            </button>
+        </form>
     </div>
 </div>
 @endsection
@@ -56,8 +64,6 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0;
-            background: linear-gradient(to bottom, #f6c08e, #f9a86b);
         }
 
         .calendar-box {

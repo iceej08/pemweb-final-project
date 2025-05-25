@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -55,6 +54,36 @@
             background-color: #ff7b4f92;
             border-radius: 10px;
         }
+        #save{
+            background-color: #d2691e;;
+        }
+        #save:hover{
+            background-color: #AF4D07;
+        }
+        .btn-logout{
+            background-color:rgb(210, 30, 30);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+        .btn-logout:hover {
+            background:rgb(167, 43, 26);
+            box-shadow: 0 4px 12px rgba(210, 105, 30, 0.3);
+        }
+        .logout-section{
+            margin-left:2.5rem;
+        }
+
     </style>
 
     </head>

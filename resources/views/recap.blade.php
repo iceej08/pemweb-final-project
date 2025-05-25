@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moodiary Recap</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/logomoo.png">
     <style>
         :root {
             --primary: #F0BD7C;
@@ -137,6 +137,8 @@
 </head>
 @extends('layout-navbar')
 
+@section('title', 'Moodiary - Recap')
+
 @section('navbar')
 <div class="sidebar fixed-top d-flex flex-column align-items-start px-3 py-4" style="min-height: 100vh;">
     <div class="d-flex align-items-center mb-2 mt-4 me-3 fw-semibold" style="font-family: 'Alkatra', cursive; font-size:1.5rem;">
@@ -151,7 +153,7 @@
             <img src="{{ asset('images/navbar/chart.png') }}" alt="Chart">
             <span>Chart</span>
         </a>
-        <a href="/calender" class="nav-item-custom mb-4">
+        <a href="/calendar" class="nav-item-custom mb-4">
             <img src="{{ asset('images/navbar/calender.png') }}" alt="Calendar">
             <span>Calendar</span>
         </a>
@@ -164,6 +166,14 @@
             <span>Add</span>
         </a>
     </div>
+    <div class="logout-section mt-auto">
+        <form action="{{ route('logout') }}" method="get" class="w-100">
+            @csrf
+            <button type="submit" class="nav-item-custom mb-4 btn-logout">
+                <span>Logout</span>
+            </button>
+        </form>
+    </div>
 </div>
 @endsection
 
@@ -174,8 +184,8 @@
         @forelse ($diaries as $diary)
             <a href="{{ url('/recap-detail/' . $diary->id) }}">
                 <div class="diary-card">
-                    @if ($diary->photo)
-                        <img src="data:image/jpeg;base64,{{ base64_encode($diary->photo) }}" class="diary-image" alt="Diary Image">
+                    @if($diary->photo)
+                        <img src="{{ asset('storage/' . $diary->photo) }}" alt="Photo" class="diary-image">
                     @else
                         <img src="{{ asset('images/default.png') }}" class="diary-image" alt="Default Image">
                     @endif
@@ -193,73 +203,10 @@
                 </div>
             </a>
         @empty
-            <p style="color: var(--text-dark); text-align: center;">Belum ada catatan mood atau diary.</p>
+            <div style="color: var(--text-dark); margin-right:-8rem;">Belum ada diary.</div>
         @endforelse
-</div>
-
-
-        {{-- <div class="diary-grid"> --}}
-            <!-- Card 1 -->
-            {{-- <a href="{{ url('/recap-detail/1') }}">
-            <div class="diary-card mood-so-so">
-                <img src="images/so-so.png" class="diary-image" alt="Sunset Sky">
-                <div class="diary-content">
-                    <div class="diary-date">05/05/2025</div>
-                    <div class="mood-section">
-                    <img src="images/moods/so-so.png" class="mood-icon" alt="Mood">
-                        <span class="mood-label">So-so</span>
-                    </div>
-                    <p class="diary-text">"Today, the sky wore a soft shade of............"</p>
-                </div>
-            </div>
-            </a>       
-
-            <!-- Card 2 -->
-            <a href="{{ url('/recap-detail/2') }}">
-            <div class="diary-card mood-bad">
-                <img src="images/bad.png" class="diary-image" alt="Rain">
-                <div class="diary-content">
-                    <div class="diary-date">04/05/2025</div>
-                    <div class="mood-section">
-                    <img src="images/moods/bad.png" class="mood-icon" alt="Mood">
-                        <span class="mood-label">Bad</span>
-                    </div>
-                    <p class="diary-text">"The rain falls again—like a longing............"</p>
-                </div>
-            </div>
-            </a>
-
-            <!-- Card 3 -->
-            <a href="{{ url('/recap-detail/3') }}">
-            <div class="diary-card mood-terrific">
-                <img src="images/terrific.png" class="diary-image" alt="Birthday Cake">
-                <div class="diary-content">
-                    <div class="diary-date">03/05/2025</div>
-                    <div class="mood-section">
-                    <img src="images/moods/terrific.png" class="mood-icon" alt="Mood">
-                        <span class="mood-label">Terrific</span>
-                    </div>
-                    <p class="diary-text">"Another year older, but my heart's just......."</p>
-                </div>
-            </div>
-            </a>
-
-            <!-- Card 4 -->
-            <a href="{{ url('/recap-detail/4') }}">
-            <div class="diary-card mood-awful">
-                <img src="images/awful.png" class="diary-image" alt="Stressed Person">
-                <div class="diary-content">
-                    <div class="diary-date">02/05/2025</div>
-                    <div class="mood-section">
-                    <img src="images/moods/awful.png" class="mood-icon" alt="Mood">
-                        <span class="mood-label">Awful</span>
-                    </div>
-                    <p class="diary-text">"They say 'rest when you're weary, but........"</p>
-                </div>
-            </div>
-            </a> --}}
-        </div>
     </div>
-    @endsection
+</div>
+@endsection
 </body>
 </html>

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moodiary - Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/logomoo.png">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -40,17 +40,22 @@
         }
         .btn-start {
             padding: 10px 24px;
-            background-color: #AF4D07;
+            background: #d2691e;
             color: white;
             border: none;
             border-radius: 8px;
             font-weight: 800;
+        }
+        .btn-start:hover{
+            background-color: #AF4D07;
         }
     </style>
 </head>
 </html>
 
 @extends('layout-navbar')
+
+@section('title', 'Moodiary - Home')
 
 @section('navbar')
 <div class="sidebar fixed-top d-flex flex-column align-items-start px-3 py-4" style="min-height: 100vh;">
@@ -66,7 +71,7 @@
             <img src="{{ asset('images/navbar/chart.png') }}" alt="Chart">
             <span>Chart</span>
         </a>
-        <a href="/calender" class="nav-item-custom mb-4">
+        <a href="/calendar" class="nav-item-custom mb-4">
             <img src="{{ asset('images/navbar/calender.png') }}" alt="Calendar">
             <span>Calendar</span>
         </a>
@@ -79,6 +84,14 @@
             <span>Add</span>
         </a>
     </div>
+    <div class="logout-section mt-auto">
+        <form action="{{ route('logout') }}" method="get" class="w-100">
+            @csrf
+            <button type="submit" class="nav-item-custom mb-4 btn-logout">
+                <span>Logout</span>
+            </button>
+        </form>
+    </div>
 </div>
 @endsection
 
@@ -87,13 +100,15 @@
     <div class="main-content">
         <div>
             <img src="{{ asset('images/moo_winkk.png') }}" alt="Cow Wink">
-            @if(session()->has('user'))
-                <h1>Hello {{ Str::title(session('user')->name) }}</h1>
+            @if(session()->has('user_moodiary'))
+                <h1>Hello {{ Str::title(session('user_moodiary')) }}</h1>
             @else
                 <h1>Hello guest</h1>
             @endif
             <p>Safe space for your feelings</p>
+            <a href="{{ route('diary.create') }}">
             <button class="btn-start">Start Your Story</button>
+            </a>
         </div>
     </div>
 </body>

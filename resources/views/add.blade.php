@@ -16,7 +16,7 @@
             <img src="{{ asset('images/navbar/chart.png') }}" alt="Chart">
             <span>Chart</span>
         </a>
-        <a href="/calender" class="nav-item-custom mb-4">
+        <a href="/calendar" class="nav-item-custom mb-4">
             <img src="{{ asset('images/navbar/calender.png') }}" alt="Calendar">
             <span>Calendar</span>
         </a>
@@ -29,11 +29,18 @@
             <span>Add</span>
         </a>
     </div>
+    <div class="logout-section mt-auto">
+        <form action="{{ route('logout') }}" method="get" class="w-100">
+            @csrf
+            <button type="submit" class="nav-item-custom mb-4 btn-logout">
+                <span>Logout</span>
+            </button>
+        </form>
+    </div>
 </div>
 @endsection
 
 @section('content')
-
 <div class="container ms-5 p-5 px-5" 
 style="background-color:#FFF0DC; border-radius: 2rem; box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.5);">
     <h3 class="text-center fw-bold mb-4">How are you feeling today?</h3>
@@ -64,7 +71,7 @@ style="background-color:#FFF0DC; border-radius: 2rem; box-shadow: 1rem 1rem 3rem
         </div>
 
         <!-- Submit -->
-        <button type="submit" class="btn px-4 fw-bold text-white" style="background: #AF4D07">Save</button>
+        <button type="submit" class="btn px-4 fw-bold text-white" id="save">Save</button>
     </form>
 </div>
 @endsection

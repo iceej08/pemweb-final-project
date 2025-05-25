@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+            <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Sign Up</title>
+    <link rel="icon" type="image/x-icon" href="/images/logomoo.png">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(to right, #FFF0DC, #F0BB78);
@@ -24,7 +24,7 @@
             /* ni cek lagi */
             padding: 30px 40px;
             width: 300px;
-            max-height: 500px;
+            max-height: 600px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.1);
             text-align: center;
         }
@@ -113,7 +113,9 @@
             <input type="password" name="password_confirmation" placeholder="Enter your password again" required>
         </div>
 
+        <a href="{{ route('login') }}">
         <button type="submit">Sign Up</button>
+        </a>
         <div class="link">Have an account? <a href="/login">Log In</a></div>
     </form>
 </div>
