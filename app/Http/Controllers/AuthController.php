@@ -34,7 +34,7 @@ class AuthController extends Controller
         $user->save();
 
         // Simpan user ke session
-        Session::put('user_moodiary', $user);
+        Session::put('user_moodiary', $user-> username);
 
         return redirect('/home');
     }
@@ -51,7 +51,7 @@ class AuthController extends Controller
                     ->first();
 
         if ($user && Hash::check($credentials['password'], $user->password)) {
-            Session::put('user', $user);
+            Session::put('user_moodiary', $user ->username);
             return redirect('/home');
         }
 

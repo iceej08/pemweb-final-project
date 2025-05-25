@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class DiaryController extends Controller
@@ -41,7 +41,7 @@ class DiaryController extends Controller
         $moodScore = $moodMap[$moodText];
 
         Diary::create([
-            'username' => Auth::user()->username,
+            'username' => Session::get('user_moodiary'),
             'mood' => $moodText,
             'mood_rate' => $moodScore,
             'diary' => $request->diary,
@@ -54,7 +54,7 @@ class DiaryController extends Controller
 
     public function recap()
     {
-        $username = Auth::user()->username;
+        $username = Session::get('user_moodiary');
 
         $diaries = Diary::where('username', $username)
                         ->orderBy('date_created', 'desc')

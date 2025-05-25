@@ -29,25 +29,32 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 // Halaman home (hanya bisa diakses jika sudah login)
 Route::get('/home', function () {
-    if (!Session::has('user')) return redirect('/login');
+    if (!Session::has('user_moodiary')) return redirect('/login');
     return view('home');
 });
-
-Route::get('/addDiary', function(){
+Route::get('/addDiary', function () {
+    if (!Session::has('user_moodiary')) return redirect('/login');
     return view('add');
 });
-
-Route::get('/calender', function(){
-    return view('calender.index');
+Route::get('/recap', function () {
+    if (!Session::has('user_moodiary')) return redirect('/login');
+    return view('recap');
+});
+Route::get('/chart', function () {
+    if (!Session::has('user_moodiary')) return redirect('/login');
+    return view('chart');
+});
+Route::get('/calender', function () {
+    if (!Session::has('user_moodiary')) return redirect('/login');
+    return view('calender');
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/addDiary', [DiaryController::class, 'create'])->name('diary.create');
-    Route::post('/addDiary', [DiaryController::class, 'store'])->name('diary.store');
-    Route::get('/recap', [DiaryController::class, 'recap'])->name('diary.recap');
-    Route::get('/chart', [ChartController::class, 'index'])->name('chart');
-    Route::get('/calender', [CalenderController::class, 'index'])->name('calender');
-});
+Route::get('/addDiary', [DiaryController::class, 'create'])->name('diary.create');
+Route::post('/addDiary', [DiaryController::class, 'store'])->name('diary.store');
+Route::get('/recap', [DiaryController::class, 'recap'])->name('diary.recap');
+Route::get('/chart', [ChartController::class, 'index'])->name('chart');
+Route::get('/calender', [CalenderController::class, 'index'])->name('calender');
+
 
 // Route::get('/recap', function () {
 //     return view(view: 'recap');

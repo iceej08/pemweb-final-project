@@ -51,18 +51,6 @@
             5 => 'terrific.png',
         ];
 
-            // Data dummy mood untuk testing
-        $moods = [
-            1 => (object)['mood_rate' => 5],
-            3 => (object)['mood_rate' => 2],
-            7 => (object)['mood_rate' => 4],
-            10 => (object)['mood_rate' => 1],
-            15 => (object)['mood_rate' => 3],
-            21 => (object)['mood_rate' => 5],
-            25 => (object)['mood_rate' => 2],
-            30 => (object)['mood_rate' => 4],
-        ];
-
     @endphp
 
     <style>
