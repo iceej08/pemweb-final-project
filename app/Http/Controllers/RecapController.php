@@ -24,4 +24,18 @@ class RecapController extends Controller
     return view('recap-detail', compact('diary'));
     }
 
+    public function destroy($id)
+    {
+        $diary = Diary::find($id);
+
+        if (!$diary) {
+            return view('recap-detail')->with('diary', null);
+        }
+
+        $diary->delete();
+
+        return redirect('/recap')->with('success', 'Catatan berhasil dihapus.');
+    }
+
+
 }

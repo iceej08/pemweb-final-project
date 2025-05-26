@@ -56,3 +56,4 @@ Route::get('/recap', [DiaryController::class, 'recap'])->name('diary.recap');
 Route::get('/chart', [ChartController::class, 'index'])->name('chart');
 Route::get('/calendar', [CalenderController::class, 'index'])->name('calendar');
 Route::get('/recap-detail/{id}', [RecapController::class, 'show'])->name('recap.show');
+Route::delete('/recap-detail/{id}', [RecapController::class, 'destroy'])->name('recap.destroy');

@@ -60,23 +60,7 @@
         #save:hover{
             background-color: #AF4D07;
         }
-        .btn-logout{
-            background-color:rgb(210, 30, 30);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-
-            transition: all 0.2s ease;
-            margin-top: 1rem;
-        }
-        .btn-logout:hover {
+        .btn-danger:hover {
             background:rgb(167, 43, 26);
             box-shadow: 0 4px 12px rgba(210, 105, 30, 0.3);
         }

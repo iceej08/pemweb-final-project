@@ -32,7 +32,7 @@
     <div class="logout-section mt-auto">
         <form action="{{ route('logout') }}" method="get" class="w-100">
             @csrf
-            <button type="submit" class="nav-item-custom mb-4 btn-logout">
+            <button type="submit" class="btn btn-danger nav-item-custom mb-4 text-white fw-semibold">
                 <span>Logout</span>
             </button>
         </form>
