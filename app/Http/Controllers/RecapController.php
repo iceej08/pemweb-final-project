@@ -14,14 +14,14 @@ class RecapController extends Controller
     }
     
     public function show($id)
-{
-    $diary = Diary::find($id);
+    {
+        $diary = Diary::find($id);
 
     if (!$diary) {
         return view('recap-detail')->with('diary', null);
     }
 
     return view('recap-detail', compact('diary'));
-}
+    }
 
 }
