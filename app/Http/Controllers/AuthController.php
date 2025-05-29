@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 
+
 class AuthController extends Controller
 {
+    
     // Tampilkan halaman signup
     public function showSignupForm()
     {
@@ -20,8 +22,8 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'username' => 'required|unique:user',
-            'email' => 'required|email|unique:user',
+            'username' => 'required|unique:user_moodiary',
+            'email' => 'required|email|unique:user_moodiary',
             'password' => 'required|confirmed',
         ]);
 
@@ -34,9 +36,9 @@ class AuthController extends Controller
         $user->save();
 
         // Simpan user ke session
-        Session::put('user', $user);
+        Session::put('user_moodiary', $user->username);
 
-        return redirect('/home');
+        return redirect('/login');
     }
 
     public function login(Request $request)
@@ -51,7 +53,7 @@ class AuthController extends Controller
                     ->first();
 
         if ($user && Hash::check($credentials['password'], $user->password)) {
-            Session::put('user', $user);
+            Session::put('user_moodiary', $user->username);
             return redirect('/home');
         }
 
@@ -61,7 +63,9 @@ class AuthController extends Controller
     // Logout
     public function logout()
     {
-        Session::forget('user');
-        return redirect('/login');
+        Session::forget('user_moodiary');
+        return redirect('/');
     }
+
+
 }

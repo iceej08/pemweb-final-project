@@ -3,37 +3,44 @@
 @section('title', 'Moodiary - Add Yours')
 
 @section('navbar')
-<div class="sidebar d-flex flex-column align-items-start px-3 py-4" style="min-height: 100vh;">
+<div class="sidebar fixed-top d-flex flex-column align-items-start px-3 py-4" style="min-height: 100vh;">
     <div class="d-flex align-items-center mb-2 mt-4 me-3 fw-semibold" style="font-family: 'Alkatra', cursive; font-size:1.5rem;">
         <img src="{{ asset('images/logomoo.png') }}" style="width: 70px; height: 70px; margin-right:10px;"> Moodiary </div>
 
     <div class="sidebar-content mt-4">
-        <a href="/" class="nav-item-custom mb-4">
-        <img src="{{ asset('images/home navbar.png') }}" alt="Home">
+        <a href="/home" class="nav-item-custom mb-4">
+        <img src="{{ asset('images/navbar/home.png') }}" alt="Home">
         <span>Home</span>
         </a>
-        <a href="/" class="nav-item-custom mb-4">
-            <img src="{{ asset('images/chart navbar.png') }}" alt="Chart">
+        <a href="/chart" class="nav-item-custom mb-4">
+            <img src="{{ asset('images/navbar/chart.png') }}" alt="Chart">
             <span>Chart</span>
         </a>
-        <a href="/" class="nav-item-custom mb-4">
-            <img src="{{ asset('images/calender navbar.png') }}" alt="Calendar">
+        <a href="/calendar" class="nav-item-custom mb-4">
+            <img src="{{ asset('images/navbar/calender.png') }}" alt="Calendar">
             <span>Calendar</span>
         </a>
-        <a href="/" class="nav-item-custom mb-4">
-            <img src="{{ asset('images/recap navbar.png') }}" alt="Recap">
+        <a href="/recap" class="nav-item-custom mb-4">
+            <img src="{{ asset('images/navbar/recap.png') }}" alt="Recap">
             <span>Recap</span>
         </a>
         <a href="/addDiary" class="nav-item-custom active mb-4" aria-current="true">
-            <img src="{{ asset('images/add navbar.png') }}" alt="Add">
+            <img src="{{ asset('images/navbar/add.png') }}" alt="Add">
             <span>Add</span>
         </a>
+    </div>
+    <div class="logout-section mt-auto">
+        <form action="{{ route('logout') }}" method="get" class="w-100">
+            @csrf
+            <button type="submit" class="btn btn-danger nav-item-custom mb-4 text-white fw-semibold">
+                <span>Logout</span>
+            </button>
+        </form>
     </div>
 </div>
 @endsection
 
 @section('content')
-
 <div class="container ms-5 p-5 px-5" 
 style="background-color:#FFF0DC; border-radius: 2rem; box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.5);">
     <h3 class="text-center fw-bold mb-4">How are you feeling today?</h3>
@@ -64,12 +71,7 @@ style="background-color:#FFF0DC; border-radius: 2rem; box-shadow: 1rem 1rem 3rem
         </div>
 
         <!-- Submit -->
-        <button type="submit" class="btn px-4 fw-bold text-white" style="background: #AF4D07">Save</button>
+        <button type="submit" class="btn px-4 fw-bold text-white" id="save">Save</button>
     </form>
 </div>
-
-    @if ($entry->image_blob)
-        <img src="data:image/jpeg;base64,{{ base64_encode($entry->image_blob) }}" class="img-fluid rounded" alt="Uploaded memory">
-    @endif
-
 @endsection

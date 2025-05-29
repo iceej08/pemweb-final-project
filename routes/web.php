@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-use app\Http\Controllers\DiaryController;
+use App\Http\Controllers\CalenderController;
+use App\Http\Controllers\ChartController;
+use App\Http\Controllers\DiaryController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RecapController;
 
 
 
@@ -24,20 +26,34 @@ Route::post('/signup', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 // Logout
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Halaman home (hanya bisa diakses jika sudah login)
 Route::get('/home', function () {
-    if (!Session::has('user')) return redirect('/login');
+    if (!Session::has('user_moodiary')) return redirect('/login');
     return view('home');
 });
-
-Route::get('/addDiary', function(){
+Route::get('/addDiary', function () {
+    if (!Session::has('user_moodiary')) return redirect('/login');
     return view('add');
 });
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/addDiary', [DiaryController::class, 'create'])->name('diary.create');
-    Route::post('/addDiary', [DiaryController::class, 'store'])->name('diary.store');
+Route::get('/recap', function () {
+    if (!Session::has('user_moodiary')) return redirect('/login');
+    return view('recap');
+});
+Route::get('/chart', function () {
+    if (!Session::has('user_moodiary')) return redirect('/login');
+    return view('chart');
+});
+Route::get('/calendar', function () {
+    if (!Session::has('user_moodiary')) return redirect('/login');
+    return view('calendar.index');
 });
 
+Route::get('/addDiary', [DiaryController::class, 'create'])->name('diary.create');
+Route::post('/addDiary', [DiaryController::class, 'store'])->name('diary.store');
+Route::get('/recap', [DiaryController::class, 'recap'])->name('diary.recap');
+Route::get('/chart', [ChartController::class, 'index'])->name('chart');
+Route::get('/calendar', [CalenderController::class, 'index'])->name('calendar');
+Route::get('/recap-detail/{id}', [RecapController::class, 'show'])->name('recap.show');
+Route::delete('/recap-detail/{id}', [RecapController::class, 'destroy'])->name('recap.destroy');

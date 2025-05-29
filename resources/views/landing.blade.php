@@ -18,8 +18,10 @@
         <div><a class="nav-link fw-semibold" href="#contact">Contact</a></div>
     </div>
     <div class="navbar-nav ms-auto">
+
+        <a href="{{ route('login') }}">
         <a href="/login" class="p-2">
-            <img src="{{ asset('images/guesticon.jpg') }}" style="width: 35px; height: 35px;">
+            <img src="{{ asset('images/preNav/guesticon.jpg') }}" style="width: 35px; height: 35px;">
         </a>
     </div>
     </div>
@@ -46,7 +48,7 @@
 <section id="about">
 <div class="container">
     <div class="text-center">
-        <img src="{{ asset('images/about.png') }}" style="width: 60%; margin: 150px">
+        <img src="{{ asset('images/preNav/about.png') }}" style="width: 60%; margin: 150px">
     </div>
 </div>
 </section>
@@ -56,10 +58,10 @@
     <div class="container text-center">
         <div class="d-flex justify-content-center gap-5 my-2 fw-semibold">
             <div class="mt-3">Contact Us</div>
-            <a href="https://gmail.com" target="blank"><img src="{{ asset('images/mail.png') }}" class="w-5"></a>
-            <a href="https://instagram.com" target="blank"><img src="{{ asset('images/insta.png') }}" class="w-5"></a>
-            <a href="https://facebook.com" target="blank"><img src="{{ asset('images/facebook.png') }}" class="w-5"></a>
-            <a href="https://x.com" target="blank"><img src="{{ asset('images/twitter.png') }}" class="w-5"></a>
+            <a href="https://gmail.com" target="blank"><img src="{{ asset('images/preNav/mail.png') }}" class="w-5"></a>
+            <a href="https://instagram.com" target="blank"><img src="{{ asset('images/preNav/insta.png') }}" class="w-5"></a>
+            <a href="https://facebook.com" target="blank"><img src="{{ asset('images/preNav/facebook.png') }}" class="w-5"></a>
+            <a href="https://x.com" target="blank"><img src="{{ asset('images/preNav/twitter.png') }}" class="w-5"></a>
         </div>
 
         <div class="mt-3 me-3 fw-semibold" style="font-family: 'Alkatra', cursive">
