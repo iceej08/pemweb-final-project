@@ -37,5 +37,4 @@ class RecapController extends Controller
         return redirect('/recap')->with('success', 'Catatan berhasil dihapus.');
     }
 
-
 }

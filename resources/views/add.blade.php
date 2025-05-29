@@ -46,12 +46,17 @@ style="background-color:#FFF0DC; border-radius: 2rem; box-shadow: 1rem 1rem 3rem
     <h3 class="text-center fw-bold mb-4">How are you feeling today?</h3>
 
     <!-- Mood Selector -->
-    <form method="POST" action="{{ route('diary.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ isset($diary) ? route('diary.update', $diary->id) : route('diary.store') }}"
+        enctype="multipart/form-data">
         @csrf
+        @if (@isset($diary))
+            @method("PUT")
+        @endif
         <div class="d-flex justify-content-center gap-4 mb-4">
             @foreach (['terrific', 'good', 'so-so', 'bad', 'awful'] as $mood)
                 <label>
-                    <input type="radio" name="mood" value="{{ $mood }}" hidden required>
+                    <input type="radio" name="mood" value="{{ $mood }}" hidden required
+                    {{ (isset($diary) && $diary->mood === $mood) ? 'checked' : '' }}>
                     <img class="mood" src="{{ asset("images/moods/$mood.png") }}" alt="{{ $mood }}" width="100">
                     <p class="mood text-center">{{ ucfirst($mood) }}</p>
                 </label>
@@ -61,17 +66,23 @@ style="background-color:#FFF0DC; border-radius: 2rem; box-shadow: 1rem 1rem 3rem
         <!-- Diary -->
         <div class="mb-3">
             <label for="diary" class="form-label fw-semibold">Today's Feeling</label>
-            <textarea name="diary" id="diary" rows="5" class="form-control" placeholder="Write your feeling here..."></textarea>
+            <textarea name="diary" id="diary" rows="5" class="form-control" placeholder="Write your feeling here...">{{ old('diary', $diary->diary ?? '' ) }}</textarea>
         </div>
 
         <!-- Upload Memory -->
         <div class="mb-3">
             <label for="photo" class="form-label fw-semibold">Upload your memory</label>
             <input class="form-control" type="file" name="photo" accept="image/*">
+            @if(isset($diary) && $diary->photo)
+                <p class="mt-2">Current Photo:</p>
+                <img src="{{ asset('storage/' . $diary->photo) }}" alt="Diary Photo" width="200">
+            @endif
         </div>
 
         <!-- Submit -->
-        <button type="submit" class="btn px-4 fw-bold text-white" id="save">Save</button>
+        <button type="submit" class="btn px-4 fw-bold text-white" id="save">
+            {{ isset($diary) ? 'Update' : 'Save' }}
+        </button>
     </form>
 </div>
 @endsection

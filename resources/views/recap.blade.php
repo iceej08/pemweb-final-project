@@ -182,33 +182,35 @@
 <div class="container">
     <div class="diary-grid">
         @forelse ($diaries as $diary)
-            <a href="{{ url('/recap-detail/' . $diary->id) }}">
-                <div class="diary-card">
-                    @if($diary->photo)
-                        <img src="{{ asset('storage/' . $diary->photo) }}" alt="Photo" class="diary-image">
-                    @else
-                        <img src="{{ asset('images/default.png') }}" class="diary-image" alt="Default Image">
-                    @endif
+            <div class="diary-card" onclick="window.location='{{ url('/recap-detail/' . $diary->id) }}'" style="cursor: pointer;">
+                @if($diary->photo)
+                    <img src="{{ asset('storage/' . $diary->photo) }}" alt="Photo" class="diary-image">
+                @else
+                    <img src="{{ asset('images/default.png') }}" class="diary-image" alt="Default Image">
+                @endif
 
-                    <div class="diary-content">
-                        <div class="diary-date">
-                            {{ \Carbon\Carbon::parse($diary->date_created)->format('d/m/Y') }}
-                        </div>
-                        <div class="mood-section">
-                            <img src="{{ asset('images/moods/' . strtolower($diary->mood) . '.png') }}" class="mood-icon" alt="Mood">
-                            <span class="mood-label">{{ ucfirst($diary->mood) }}</span>
-                        </div>
-                        <p class="diary-text">"{{ Str::limit($diary->diary, 100) }}"</p>
-                        <form action="{{ route('recap.destroy', $diary->id) }}" method="POST" style="margin-top: 20px;">
+                <div class="diary-content">
+                    <div class="diary-date">
+                        {{ \Carbon\Carbon::parse($diary->date_created)->format('d/m/Y') }}
+                    </div>
+                    <div class="mood-section">
+                        <img src="{{ asset('images/moods/' . strtolower($diary->mood) . '.png') }}" class="mood-icon" alt="Mood">
+                        <span class="mood-label">{{ ucfirst($diary->mood) }}</span>
+                    </div>
+                    <p class="diary-text">"{{ Str::limit($diary->diary, 100) }}"</p>
+                    <div class="d-flex gap-3 mt-3 justify-content-center">
+                        <a href="{{ route('diary.edit', $diary->id) }}" class="btn btn-sm btn-warning" onclick="event.stopPropagation()">Edit</a>
+                            
+                        <form action="{{ route('recap.destroy', $diary->id) }}" method="POST" onclick="event.stopPropagation()">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah kamu yakin ingin menghapus catatan ini?')">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah kamu yakin ingin menghapus catatan ini?')">
                                 Delete
                             </button>
-                        </form>                        
-                    </div>
+                        </form>
+                    </div> 
                 </div>
-            </a>
+            </div>
         @empty
             <div style="color: var(--text-dark); margin-right:-8rem;">Belum ada diary.</div>
         @endforelse
