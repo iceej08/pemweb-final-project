@@ -62,4 +62,43 @@ class DiaryController extends Controller
 
         return view('recap', compact('diaries'));
     }
+
+    public function edit($id)
+    {
+        $diary = Diary::findOrFail($id);
+        return view('add', compact('diary'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'mood' => 'required|in:terrific,good,so-so,bad,awful',
+            'diary' => 'nullable|string',
+            'photo' => 'nullable|image|max:2048',
+        ]);
+
+        $moodMap = [
+            'awful' => 1,
+            'bad' => 2,
+            'so-so' => 3,
+            'good' => 4,
+            'terrific' => 5,
+        ];
+
+        $moodText = $request->mood;
+        $moodScore = $moodMap[$moodText];
+
+        $diary = Diary::findOrFail($id);
+        $diary->mood = $moodText;
+        $diary->mood_rate = $moodScore;
+        $diary->diary = $request->diary;
+
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('uploads', 'public');
+            $diary->photo = $photoPath;
+        }
+
+        $diary->save();
+        return redirect()->route('diary.recap')->with('success', 'Diary berhasil diperbarui!');
+    }
 }
