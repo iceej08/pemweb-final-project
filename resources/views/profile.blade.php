@@ -113,7 +113,7 @@
         <img src="{{ asset('images/navbar/home.png') }}" alt="Home">
         <span>Home</span>
         </a>
-        <a href="/chart" class="nav-item-custom active mb-4">
+        <a href="/chart" class="nav-item-custom mb-4">
             <img src="{{ asset('images/navbar/chart.png') }}" alt="Chart">
             <span>Chart</span>
         </a>
@@ -128,6 +128,10 @@
         <a href="/addDiary" class="nav-item-custom mb-4">
             <img src="{{ asset('images/navbar/add.png') }}" alt="Add">
             <span>Add</span>
+        </a>
+        <a href="{{ route('profile', ['username' => session('user_moodiary')]) }}" class="nav-item-custom active mb-4">
+            <img src="{{ asset('images/navbar/profile.png') }}" alt="Add" style="width: 35px; height: auto;">
+            <span>Profile</span>
         </a>
     </div>
 </div>
@@ -176,26 +180,26 @@
 
                     <!-- Username Field -->
                     <div class="mb-3 form-floating">
-                        <input type="text" class="form-control" id="username" name="new_username" placeholder="Username" value="{{ old('new_username', $user->username) }}">
+                        <input type="text" class="form-control" id="username" name="new_username" placeholder="Username" value="{{ ($user->username) }}" disabled>
                         <label for="username">Username</label>
                     </div>
 
                     <!-- Button Row -->
                     <div class="d-flex justify-content-between gap-2 mt-3">
                         <!-- Save Button -->
-                        <button type="submit" class="btn btn-primary btn-save w-100">
+                        <button type="submit" class="btn btn-save w-100 text-white" style="background-color:rgb(237, 173, 90)">
                             <i class="fas fa-save me-2"></i>Save Edit
                         </button>
-
+                   
+                </form>
                         <!-- Logout Button -->
                         <form action="{{ route('logout') }}" method="get">
-                            @csrf
-                            <button type="submit" class="btn btn-danger text-white fw-semibold">
-                                Logout
-                            </button>
+                                @csrf
+                                <button type="submit" class="btn btn-danger text-white">
+                                    <span>Logout</span>
+                                </button>
                         </form>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
