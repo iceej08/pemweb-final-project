@@ -25,4 +25,7 @@ Route::middleware('auth.session')->group(function() {
     Route::get('/calendar', [CalenderController::class, 'index'])->name('calendar');
     Route::get('/recap-detail/{id}', [RecapController::class, 'show'])->name('recap.show');
     Route::delete('/recap-detail/{id}', [RecapController::class, 'destroy'])->name('recap.destroy');
+    //add
+    Route::get('/profile/{username}', [ProfileController::class, 'index'])->name('profile');
+    Route::put('/profile/{username}/{id}/update', [ProfileController::class, 'update'])->name('profile.update');
 });
