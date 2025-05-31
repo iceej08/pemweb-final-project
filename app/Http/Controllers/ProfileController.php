@@ -16,18 +16,16 @@ class ProfileController extends Controller
         return view('profile', compact('user'));
     }
 
-    public function update(Request $request, $username, $id)
+    public function update(Request $request, $username)
     {
-        $user = User::findOrFail($id);     
+        $user = User::where('username', $username)->firstOrFail();
 
         $request->validate([
             'new_name' => 'required|string',
-            'new_username' => 'required|string|unique:user_moodiary,username,'. $user->id,
             'new_email' => 'required|string|unique:user_moodiary,email,'. $user->id,
         ]);
 
         $user->name = $request->new_name;
-        $user->username = $request->new_username;
         $user->email = $request->new_email;
 
         $user->save();
