@@ -64,7 +64,7 @@
         }
 
         .card-chart {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.9); 
             border-radius: 20px;
             padding: 2rem;
             backdrop-filter: blur(10px);
@@ -127,6 +127,7 @@
             color: #666;
             font-size: 1rem;
         }
+
 
         .btn-add{
             background: #d2691e;
@@ -217,14 +218,10 @@
             <img src="{{ asset('images/navbar/add.png') }}" alt="Add">
             <span>Add</span>
         </a>
-    </div>
-    <div class="logout-section mt-auto">
-        <form action="{{ route('logout') }}" method="get" class="w-100">
-            @csrf
-            <button type="submit" class="btn btn-danger nav-item-custom mb-4 text-white fw-semibold">
-                <span>Logout</span>
-            </button>
-        </form>
+        <a href="{{ route('profile', ['username' => session('user_moodiary')]) }}" class="nav-item-custom mb-4">
+            <img src="{{ asset('images/navbar/profile.png') }}" alt="Add" style="width: 35px; height: auto;">
+            <span>Profile</span>
+        </a>
     </div>
 </div>
 @endsection
@@ -238,6 +235,34 @@
         @endif
 
         <h1 class="page-title">Chart</h1>
+
+    <!--EDIT-->
+    <div class="d-flex justify-content-center mb-4">
+        <form method="GET" action="{{ route('chart') }}" class="d-flex align-items-center gap-3 p-3 rounded-4 shadow" style="width:75%; background: rgba(255, 255, 255, 0.9)">
+            <div class="d-flex justify-content-center w-100">
+                <label for="month" class="form-label mt-1 fw-semibold me-2">Select Month:</label>
+                <select name="month" id="month" class="form-select form-select-sm w-25 me-2">
+                    @foreach(range(1, 12) as $m)
+                        <option value="{{ $m }}" {{ $m == $month ? 'selected' : '' }}>
+                            {{ date('F', mktime(0, 0, 0, $m, 1)) }}
+                        </option>
+                    @endforeach
+                </select>
+            
+                <label for="year" class="form-label mt-1 fw-semibold me-2">Select Year:</label>
+                <select name="year" id="year" class="form-select form-select-sm w-25 me-2">
+                    @for($y = now()->year; $y >= now()->year - 5; $y--)
+                        <option value="{{ $y }}" {{ $y == $year ? 'selected' : '' }}>{{ $y }}</option>
+                    @endfor
+                </select>
+           
+                <button type="submit" class="btn btn-sm fw-semibold text-white" style="background-color: #d2691e;">
+                    <i class="fas fa-chart-line me-1"></i> View
+                </button>
+            </div>
+        </form>
+    </div>
+
 
         <div class="stats-grid">
             <!--main-->
