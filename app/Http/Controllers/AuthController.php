@@ -53,7 +53,7 @@ class AuthController extends Controller
                     ->first();
 
         if ($user && Hash::check($credentials['password'], $user->password)) {
-            Session::put('user_moodiary', $user->username);
+            Session::put('user_moodiary', $user->name);
             return redirect('/home');
         }
 
