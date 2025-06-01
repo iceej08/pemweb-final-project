@@ -8,5 +8,7 @@ class Calender extends Model
 {
     protected $table = 'diary_data';
     protected $fillable = ['username', 'date_created', 'mood_rate'];
-    public $timestamps = true;
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
