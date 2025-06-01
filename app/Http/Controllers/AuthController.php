@@ -38,7 +38,7 @@ class AuthController extends Controller
         // Simpan user ke session
         Session::put('user_moodiary', $user->username);
 
-        return redirect('/login');
+        return redirect('/login')->with('success', 'Signup berhasil! Silakan login.');
     }
 
     public function login(Request $request)
@@ -57,7 +57,8 @@ class AuthController extends Controller
             return redirect('/home');
         }
 
-        return back()->withErrors(['invalid' => 'Data tidak terdaftar atau password salah.']);
+        return back()->withErrors(['invalid' => 'Username/email atau password salah.']);
+
     }
 
     // Logout

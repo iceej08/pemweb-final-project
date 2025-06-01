@@ -102,6 +102,8 @@
         <img src="{{ asset('images/cow_login.png') }}" alt="Cow">
     </div>
 </div>
+
+
     @if ($errors->has('invalid'))
         <div style="color:red;text-align:center;margin-top:10px;">
             {{ $errors->first('invalid') }}
@@ -114,15 +116,6 @@
     @if ($errors->has('invalid'))
         <script>alert("{{ $errors->first('invalid') }}");</script>
     @endif
-    {{-- @if ($errors->has('invalid'))
-        <div style="color:red;text-align:center;margin-top:10px;">
-            {{ $errors->first('invalid') }}
-        </div>
-    @endif
-    @if (session('alert'))
-        <div class="alert alert-warning">
-            {{ session('alert') }}
-        </div>
-    @endif --}}
+
 </body>
 </html>
