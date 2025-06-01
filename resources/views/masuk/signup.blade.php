@@ -81,6 +81,7 @@
 <body>
 <div class="container">
     <div><img src="{{ asset('images/cow_signup.png') }}" alt="cow" width="550"></div>
+
     <form action="/signup" method="POST" class="form-box">
         @csrf
         <h2>Sign Up</h2>
@@ -112,7 +113,9 @@
             <input type="password" name="password_confirmation" placeholder="Enter your password again" required>
         </div>
 
+        <a href="{{ route('login') }}">
         <button type="submit">Sign Up</button>
+        </a>
         <div class="link">Have an account? <a href="/login">Log In</a></div>
     </form>
 </div>

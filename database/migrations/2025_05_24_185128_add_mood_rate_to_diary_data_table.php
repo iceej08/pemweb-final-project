@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_moodiary', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('name');
-            $table->string('username')->unique();
-            $table->string('email')->unique();
-            $table->string('password');
+        Schema::table('diary_data', function (Blueprint $table) {
+            $table->integer('mood_rate')->after('mood');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_moodiary');
+        Schema::table('diary_data', function (Blueprint $table) {
+            //
+        });
     }
 };

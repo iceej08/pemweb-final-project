@@ -85,16 +85,16 @@
     </style>
 </head>
 <body>
-<section id="login">
+
 <div class="container">
     <div class="form-box">
         <h2>Log In</h2>
         <p>Welcome to Moodiary</p>
-        <form action="/login" method="POST">
+        <form action="{{ route('login') }}" method="POST">
             @csrf
-            <input type="text" name="username" placeholder="Username or email address" required>
+            <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Sign In</button>
+            <button type="submit">Log In</button>
         </form>
         <div class="link">No Account? <a href="/signup">Sign Up</a></div>
     </div>
@@ -102,6 +102,7 @@
         <img src="{{ asset('images/cow_login.png') }}" alt="Cow">
     </div>
 </div>
+
 
 @if ($errors->has('invalid'))
     <div style="color:red;text-align:center;margin-top:10px;">
@@ -117,5 +118,17 @@
 @endif
 
     </section>
+
+    @if ($errors->has('invalid'))
+        <div style="color:red;text-align:center;margin-top:10px;">
+            {{ $errors->first('invalid') }}
+        </div>
+    @endif
+    @if (session('alert'))
+        <div class="alert alert-warning">
+            {{ session('alert') }}
+        </div>
+    @endif
+
 </body>
 </html>
