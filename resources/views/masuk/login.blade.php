@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/logomoo.png">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
             background: linear-gradient(to right, #FFF0DC, #F0BB78);
             height: 100vh;
         }
@@ -26,17 +26,15 @@
             padding: 0 120px;
             gap: 0px; 
         }
-
         .form-box {
             background: white;
             border-radius: 20px;
-            padding: 80px 40px;
-            width: 500px;
+            padding: 60px 30px;
+            width: 400px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
             text-align: center;
             margin-left: auto;
         }
-
         .form-box h2 {
             font-size: 32px;
             margin-bottom: 10px;
@@ -81,8 +79,8 @@
         }
 
         .image-container img {
-            max-width: 700px;
-            width: 650%;
+            max-width: 570px;
+            width: 500%;
         }
     </style>
 </head>
@@ -110,6 +108,14 @@
         {{ $errors->first('invalid') }}
     </div>
 @endif
+@if (session('success'))
+    <script>alert("{{ session('success') }}");</script>
+@endif
+
+@if ($errors->has('invalid'))
+    <script>alert("{{ $errors->first('invalid') }}");</script>
+@endif
+
     </section>
 </body>
 </html>
