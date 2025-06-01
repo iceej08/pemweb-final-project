@@ -103,6 +103,22 @@
     </div>
 </div>
 
+
+@if ($errors->has('invalid'))
+    <div style="color:red;text-align:center;margin-top:10px;">
+        {{ $errors->first('invalid') }}
+    </div>
+@endif
+@if (session('success'))
+    <script>alert("{{ session('success') }}");</script>
+@endif
+
+@if ($errors->has('invalid'))
+    <script>alert("{{ $errors->first('invalid') }}");</script>
+@endif
+
+    </section>
+
     @if ($errors->has('invalid'))
         <div style="color:red;text-align:center;margin-top:10px;">
             {{ $errors->first('invalid') }}
@@ -113,5 +129,6 @@
             {{ session('alert') }}
         </div>
     @endif
+
 </body>
 </html>

@@ -38,7 +38,7 @@ class AuthController extends Controller
         // Simpan user ke session
         Session::put('user_moodiary', $user->username);
 
-        return redirect('/login');
+        return redirect('/login')->with('success', 'Signup berhasil! Silakan login.');
     }
 
     public function login(Request $request)
@@ -53,11 +53,14 @@ class AuthController extends Controller
                     ->first();
 
         if ($user && Hash::check($credentials['password'], $user->password)) {
-            Session::put('user_moodiary', $user->name);
-            return redirect('/home');
+
+            Session::put('user', $user);
+            return redirect('/home')->with('success', 'Login berhasil!');
+
         }
 
-        return back()->withErrors(['invalid' => 'Data tidak terdaftar atau password salah.']);
+        return back()->withErrors(['invalid' => 'Username/email atau password salah.']);
+
     }
 
     // Logout
