@@ -102,8 +102,19 @@
         <img src="{{ asset('images/cow_login.png') }}" alt="Cow">
     </div>
 </div>
+    @if ($errors->has('invalid'))
+        <div style="color:red;text-align:center;margin-top:10px;">
+            {{ $errors->first('invalid') }}
+        </div>
+    @endif
+    @if (session('success'))
+        <script>alert("{{ session('success') }}");</script>
+    @endif
 
     @if ($errors->has('invalid'))
+        <script>alert("{{ $errors->first('invalid') }}");</script>
+    @endif
+    {{-- @if ($errors->has('invalid'))
         <div style="color:red;text-align:center;margin-top:10px;">
             {{ $errors->first('invalid') }}
         </div>
@@ -112,6 +123,6 @@
         <div class="alert alert-warning">
             {{ session('alert') }}
         </div>
-    @endif
+    @endif --}}
 </body>
 </html>

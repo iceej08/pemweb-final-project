@@ -83,14 +83,10 @@
             <img src="{{ asset('images/navbar/add.png') }}" alt="Add">
             <span>Add</span>
         </a>
-    </div>
-    <div class="logout-section mt-auto">
-        <form action="{{ route('logout') }}" method="get" class="w-100">
-            @csrf
-            <button type="submit" class="btn btn-danger nav-item-custom mb-4 text-white fw-semibold">
-                <span>Logout</span>
-            </button>
-        </form>
+        <a href="{{ route('profile', ['username' => session('user_moodiary')]) }}" class="nav-item-custom mb-4">
+            <img src="{{ asset('images/navbar/profile.png') }}" alt="Add" style="width: 35px; height: auto;">
+            <span>Profile</span>
+        </a>
     </div>
 </div>
 @endsection
