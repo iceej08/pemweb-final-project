@@ -139,7 +139,7 @@
 
 
 @section('content')
-<div class="container mt-3">
+
     <h2 class="text-center fw-bold mb-0">Profile Page</h2>
 
     @if(session('success'))
@@ -151,7 +151,7 @@
     @endif
 
     <div class="container-fluid d-flex align-items-center justify-content-center py-4">
-        <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-7">
+        <div style="width:35rem">
             <div class="profile-card p-5">
                 <!-- Profile Avatar -->
                 <div class="profile-avatar">
@@ -192,16 +192,15 @@
                         </button>
                    
                 </form>
-                        <!-- Logout Button -->
-                        <form action="{{ route('logout') }}" method="get">
-                                @csrf
-                                <button type="submit" class="btn btn-danger text-white">
-                                    <span>Logout</span>
-                                </button>
-                        </form>
+                <!-- Logout Button -->
+                <form action="{{ route('logout') }}" method="get">
+                        @csrf
+                        <button type="submit" class="btn btn-danger text-white">
+                            <span>Logout</span>
+                        </button>
+                </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

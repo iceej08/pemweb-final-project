@@ -131,17 +131,16 @@ document.querySelector('form').addEventListener('submit', function (e) {
     }
 });
 </script>
-@if (session('success'))
-    <script>
-        alert("{{ session('success') }}");
-    </script>
-@endif
+    @if (session('success'))
+        <script>
+            alert("{{ session('success') }}");
+        </script>
+    @endif
 
-@if ($errors->has('invalid'))
-    <script>
-        alert("{{ $errors->first('invalid') }}");
-    </script>
-@endif
-
+    @if ($errors->has('invalid'))
+        <script>
+            alert("{{ $errors->first('invalid') }}");
+        </script>
+    @endif
 </body>
 </html>

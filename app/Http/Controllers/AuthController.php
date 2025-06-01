@@ -53,10 +53,8 @@ class AuthController extends Controller
                     ->first();
 
         if ($user && Hash::check($credentials['password'], $user->password)) {
-
-            Session::put('user', $user);
-            return redirect('/home')->with('success', 'Login berhasil!');
-
+            Session::put('user_moodiary', $user->username);
+            return redirect('/home');
         }
 
         return back()->withErrors(['invalid' => 'Username/email atau password salah.']);

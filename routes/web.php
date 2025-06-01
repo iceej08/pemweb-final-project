@@ -6,6 +6,7 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DiaryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RecapController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', fn() => view('landing'))->name('landing');
 Route::get('/login', fn() => view('masuk.login'))->name('login');
